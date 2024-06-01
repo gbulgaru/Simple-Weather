@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name" translatable="false">Simple Weather</string>
+    <string name="hintSearchBar">Search a place…</string>
+    <string name="loadingText">This won\'t take too much…</string>
+    <string name="tempNow">Temperature</string>
+    <string name="lblHumidity">Humidity: </string>
+    <string name="lblPressure">Pressure: </string>
+    <string name="lblWindSpeed">Wind speed: </string>
+    <string name="lblWindDirection">Wind direction: </string>
+    <string name="lblVisibility">Visibility: </string>
+
+    <string name="errorInternetTitle">No internet connection</string>
+    <string name="errorInternetMessage">The internet connection is not available, check the settings and try again.</string>
+    <string name="close">Close</string>
+    <!-- Google Play Services -->
+    <string name="gmsWarningTitle">Limited functionalities</string>
+    <string name="gmsWarningMessage">This app requires Google Play Services to work properly.\nWithout it, you will not
+        be able to use your live location.
+    </string>
+    <string name="gpsRationaleTitle">We care about your privacy</string>
+    <string name="gpsRationaleMessage">To provide you with the most accurate weather forecasts we would need your
+        approximate location.\nYou can always opt out and receive predictions based on your internet location.\nWe will
+        not share anything with third parties.
+    </string>
+</resources>

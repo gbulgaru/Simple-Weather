@@ -1,0 +1,44 @@
+# Gradle files
+*.iml
+.gradle
+/local.properties
+/secrets.properties
+
+# IntelliJ IDEA project files
+.idea/
+.DS_Store
+
+# Android Studio captures
+/captures
+
+# Built application files
+*.apk
+*.ap_
+*.aab
+
+# Files for the ART/Dalvik VM
+*.dex
+
+# Java class files
+*.class
+
+# Generated files
+bin/
+gen/
+
+# External native build folder generated in Android Studio 2.2 and later
+.externalNativeBuild
+.cxx
+
+# Gradle Wrapper files
+gradle-wrapper.jar
+gradle-wrapper.properties
+
+# Log files
+*.log
+
+# Google Services JSON
+google-services.json
+
+# Android build folder
+/build

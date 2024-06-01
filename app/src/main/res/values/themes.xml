@@ -1,0 +1,16 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.SimpleWeather.NoActionBar" parent="Theme.Material3.DynamicColors.Light">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">?attr/colorPrimaryContainer</item>
+        <item name="colorPrimaryVariant">?attr/colorPrimaryVariant</item>
+        <item name="colorOnPrimary">?attr/colorOnPrimary</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">?attr/colorSecondary</item>
+        <item name="colorSecondaryVariant">?attr/colorSecondaryVariant</item>
+        <item name="colorOnSecondary">?attr/colorOnSecondary</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+</resources>
