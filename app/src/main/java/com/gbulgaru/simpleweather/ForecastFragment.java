@@ -34,10 +34,16 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import org.jetbrains.annotations.NotNull;
 
 public class ForecastFragment extends Fragment {
-	private final WeatherData weatherData = new WeatherData();
+	private static final WeatherData weatherData = new WeatherData();
 	private AlertDialog loadingDialog;
 
 	public static ForecastFragment newInstance() {
+		return new ForecastFragment();
+	}
+
+	public static ForecastFragment newInstance(double latitude, double longitude) {
+		weatherData.setLatitude(String.valueOf(latitude));
+		weatherData.setLongitude(String.valueOf(longitude));
 		return new ForecastFragment();
 	}
 
@@ -64,12 +70,14 @@ public class ForecastFragment extends Fragment {
 	}
 
 	private void fetchDataAndUpdateUI() {
-		REST_IP_Location rest_ip_location = new REST_IP_Location(weatherData);
-		rest_ip_location.start();
-		try {
-			rest_ip_location.join();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+		if (weatherData.getLatitude().isEmpty()&&weatherData.getLongitude().isEmpty()){
+			REST_IP_Location rest_ip_location = new REST_IP_Location(weatherData);
+			rest_ip_location.start();
+			try {
+				rest_ip_location.join();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 
 		REST_OpenW_Now rest_openWeather_now = new REST_OpenW_Now(weatherData);

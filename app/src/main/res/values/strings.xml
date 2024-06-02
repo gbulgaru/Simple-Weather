@@ -12,6 +12,8 @@
     <string name="errInternetTitle">No internet connection</string>
     <string name="errInternetMessage">The internet connection is not available, check the settings and try again.</string>
     <string name="close">Close</string>
+    <string name="errPermission">Without permission IP location will be used.</string>
+    <string name="errLocationOff">Location services seem off, please check your settings.</string>
     <!-- Google Play Services -->
     <string name="gmsWarningTitle">Limited functionalities</string>
     <string name="gmsWarningMessage">This app requires Google Play Services to work properly.\nWithout it, you will not

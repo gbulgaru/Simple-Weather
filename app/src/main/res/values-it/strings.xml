@@ -20,5 +20,7 @@
     <string name="gpsRationaleTitle">Ci teniamo alla tua privacy</string>
     <string name="gpsRationaleMessage">Per fornirti le previsioni meteorologiche più accurate avremmo bisogno della tua posizione approssimativa.\nPuoi sempre rifiutare e ricevere le previsioni basate sulla tua posizione internet.\nNon condivideremo nulla con terze parti.
     </string>
+    <string name="errPermission">Senza l\'autorizzazione verrà usata la posizione IP.</string>
+    <string name="errLocationOff">La geolocalizzazione sembra essere disattivata, controlla le impostazioni.</string>
 
 </resources>
