@@ -1,3 +1,22 @@
+/*
+ * Copyright 2024 Bulgaru George Ionut
+ *
+ * This file is part of Simple Weather.
+ *
+ * Simple Weather is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Simple Weather is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Simple Weather. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package com.gbulgaru.simpleweather;
 
 import android.os.Bundle;
@@ -7,30 +26,44 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import com.gbulgaru.simpleweather.RESTClients.REST_IP_Location;
 import com.gbulgaru.simpleweather.RESTClients.REST_OpenW_Now;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import org.jetbrains.annotations.NotNull;
 
 public class ForecastFragment extends Fragment {
-
 	private final WeatherData weatherData = new WeatherData();
-	private DataLoadListener dataLoadListener;
+	private AlertDialog loadingDialog;
 
-	public static ForecastFragment newInstance(DataLoadListener dataLoadListener) {
-		ForecastFragment fragment = new ForecastFragment();
-		fragment.dataLoadListener = dataLoadListener;
-		return fragment;
+	public static ForecastFragment newInstance() {
+		return new ForecastFragment();
 	}
 
 	@Override
 	public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
 	                         @Nullable Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.fragment_forecast, container, false);
-		fetchDataAndUpdateUI(view);
-		return view;
+		return inflater.inflate(R.layout.fragment_forecast, container, false);
 	}
 
-	private void fetchDataAndUpdateUI(View view) {
+	@Override
+	public void onViewCreated(@NotNull View view, Bundle savedInstanceState) {
+		super.onViewCreated(view, savedInstanceState);
+		// Starting information retrieval and UI update
+		initializeLoadingDialog();
+		fetchDataAndUpdateUI();
+	}
+
+	private void initializeLoadingDialog() {
+		MaterialAlertDialogBuilder loadingDialogBuilder = new MaterialAlertDialogBuilder(requireContext());
+		View dialogView = getLayoutInflater().inflate(R.layout.loading_dialog, null);
+		loadingDialogBuilder.setView(dialogView);
+		loadingDialogBuilder.setCancelable(false);
+		loadingDialog = loadingDialogBuilder.create();
+	}
+
+	private void fetchDataAndUpdateUI() {
 		REST_IP_Location rest_ip_location = new REST_IP_Location(weatherData);
 		rest_ip_location.start();
 		try {
@@ -48,12 +81,14 @@ public class ForecastFragment extends Fragment {
 		}
 
 		requireActivity().runOnUiThread(() -> {
-			updateForecast(view);
-			dataLoadListener.onDataLoaded();
+			loadingDialog.show();
+			updateForecast();
+			loadingDialog.dismiss();
 		});
 	}
 
-	private void updateForecast(View view) {
+	private void updateForecast() {
+		View view = requireView();
 		TextView lblNow = view.findViewById(R.id.lblNow);
 		TextView lblTempNow = view.findViewById(R.id.lblTempNow);
 		TextView lblTempMax = view.findViewById(R.id.lblTempMax);
@@ -64,20 +99,20 @@ public class ForecastFragment extends Fragment {
 		TextView lblWindSpeed = view.findViewById(R.id.lblWindSpeed);
 		TextView lblWindDeg = view.findViewById(R.id.lblWindDirection);
 
-		updatePicture(view, weatherData.getCode());
+		updatePicture(weatherData.getCode());
 		lblNow.setText(weatherData.getCity() + " - " + weatherData.getShortDescription());
 		lblTempNow.setText(weatherData.getTempNow() + "°C");
 		lblTempMax.setText(weatherData.getTempMax() + "°/");
 		lblTempMin.setText(weatherData.getTempMin() + "°");
-		lblHumidity.setText(getString(R.string.lblHumidity) + weatherData.getHumidity() + "%");
-		lblVisibility.setText(getString(R.string.lblVisibility) + weatherData.getVisibility() + "m");
-		lblPressure.setText(getString(R.string.lblPressure) + weatherData.getPressure() + "hPa");
-		lblWindSpeed.setText(getString(R.string.lblWindSpeed) + weatherData.getWindSpeed() + "m/s");
-		lblWindDeg.setText(getString(R.string.lblWindDirection) + weatherData.getWindDeg() + "°");
+		lblHumidity.setText(getString(R.string.lblHumidity) + " " + weatherData.getHumidity() + "%");
+		lblVisibility.setText(getString(R.string.lblVisibility) + " " + weatherData.getVisibility() + "m");
+		lblPressure.setText(getString(R.string.lblPressure) + " " + weatherData.getPressure() + "hPa");
+		lblWindSpeed.setText(getString(R.string.lblWindSpeed) + " " + weatherData.getWindSpeed() + "m/s");
+		lblWindDeg.setText(getString(R.string.lblWindDirection) + " " + weatherData.getWindDeg() + "°");
 	}
 
-	private void updatePicture(View view, int code) {
-		TextView imgNow = view.findViewById(R.id.lblIcoNow);
+	private void updatePicture(int code) {
+		TextView imgNow = requireView().findViewById(R.id.lblIcoNow);
 		if (code >= 200 && code <= 232) {
 			imgNow.setText("\uD83C\uDF29️");
 		} else if (code >= 300 && code <= 321) {

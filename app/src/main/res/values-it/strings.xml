@@ -1,18 +1,24 @@
 <resources>
-    <string name="app_name">Simple Weather</string>
     <string name="hintSearchBar">Cerca un luogo…</string>
-    <string name="gmsWarningTitle">Funzionalità limitate</string>
-    <string name="gmsWarningMessage">Questa app richiede Google Play Services per funzionare correttamente.\nSenza di esso non sarai in grado di utilizzare la tua posizione reale. </string>
-    <string name="gpsRationaleTitle">Ci teniamo alla tua privacy</string>
-    <string name="gpsRationaleMessage">Per fornirti le previsioni meteorologiche più accurate avremmo bisogno della tua posizione approssimativa.\nPuoi sempre rifiutare e ricevere le previsioni basate sulla tua posizione internet.\nNon condivideremo nulla con terze parti. </string>
-	<string name="loadingText">Solo un secondo…</string>
-	<string name="tempNow">Temperatura</string>
-    <string name="lblHumidity">"Umidità: "</string>
-    <string name="lblPressure">"Pressione atmosferica: "</string>
-    <string name="lblWindSpeed">"Velocità del vento: "</string>
-    <string name="lblWindDirection">"Direzione del vento: "</string>
-    <string name="lblVisibility">"Visibilità: "</string>
-    <string name="errorInternetTitle">Nessuna connessione ad internet</string>
-    <string name="errorInternetMessage">La connessione ad internet non risulta disponibile, controlla le impostazioni e riprova.</string>
+    <string name="loadingText">Solo un secondo…</string>
+
+    <string name="lblHumidity">Umidità:</string>
+    <string name="lblPressure">Pressione atmosferica:</string>
+    <string name="lblWindSpeed">Velocità del vento:</string>
+    <string name="lblWindDirection">Direzione del vento:</string>
+    <string name="lblVisibility">Visibilità:</string>
+
+    <!-- Error messages -->
+    <string name="errInternetTitle">Nessuna connessione ad internet</string>
+    <string name="errInternetMessage">La connessione a internet non risulta disponibile, controlla le impostazioni e riprova.
+    </string>
     <string name="close">Chiudi</string>
+    <!-- Google Play Services -->
+    <string name="gmsWarningTitle">Funzionalità limitate</string>
+    <string name="gmsWarningMessage">Questa app richiede Google Play Services per funzionare correttamente.\nSenza di esso non sarai in grado di utilizzare la tua posizione reale.
+    </string>
+    <string name="gpsRationaleTitle">Ci teniamo alla tua privacy</string>
+    <string name="gpsRationaleMessage">Per fornirti le previsioni meteorologiche più accurate avremmo bisogno della tua posizione approssimativa.\nPuoi sempre rifiutare e ricevere le previsioni basate sulla tua posizione internet.\nNon condivideremo nulla con terze parti.
+    </string>
+
 </resources>

@@ -1,8 +1,8 @@
 # Gradle files
 *.iml
 .gradle
-/local.properties
-/secrets.properties
+local.properties
+secrets.properties
 
 # IntelliJ IDEA project files
 .idea/
