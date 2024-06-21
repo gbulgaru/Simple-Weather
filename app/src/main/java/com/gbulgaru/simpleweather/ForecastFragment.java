@@ -112,11 +112,11 @@ public class ForecastFragment extends Fragment {
 		lblTempNow.setText(weatherData.getTempNow() + "°C");
 		lblTempMax.setText(weatherData.getTempMax() + "°/");
 		lblTempMin.setText(weatherData.getTempMin() + "°");
-		lblHumidity.setText(getString(R.string.lblHumidity) + " " + weatherData.getHumidity() + "%");
-		lblVisibility.setText(getString(R.string.lblVisibility) + " " + weatherData.getVisibility() + "m");
-		lblPressure.setText(getString(R.string.lblPressure) + " " + weatherData.getPressure() + "hPa");
-		lblWindSpeed.setText(getString(R.string.lblWindSpeed) + " " + weatherData.getWindSpeed() + "m/s");
-		lblWindDeg.setText(getString(R.string.lblWindDirection) + " " + weatherData.getWindDeg() + "°");
+		lblHumidity.setText(weatherData.getHumidity() + "%");
+		lblVisibility.setText(weatherData.getVisibility() + "m");
+		lblPressure.setText(weatherData.getPressure() + "hPa");
+		lblWindSpeed.setText(weatherData.getWindSpeed() + "m/s");
+		lblWindDeg.setText(weatherData.getWindDeg() + "°");
 	}
 
 	private void updatePicture(int code) {

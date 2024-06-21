@@ -2,11 +2,11 @@
     <string name="app_name" translatable="false">Simple Weather</string>
     <string name="hintSearchBar">Search a place…</string>
     <string name="loadingText">This won\'t take too much…</string>
-    <string name="lblHumidity">Humidity:</string>
-    <string name="lblPressure">Pressure:</string>
-    <string name="lblWindSpeed">Wind speed:</string>
-    <string name="lblWindDirection">Wind direction:</string>
-    <string name="lblVisibility">Visibility:</string>
+    <string name="lblHumidity">Humidity</string>
+    <string name="lblPressure">Pressure</string>
+    <string name="lblWindSpeed">Wind speed</string>
+    <string name="lblWindDirection">Wind direction</string>
+    <string name="lblVisibility">Visibility</string>
 
     <!-- Error messages -->
     <string name="errInternetTitle">No internet connection</string>

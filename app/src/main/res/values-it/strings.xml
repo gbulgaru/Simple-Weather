@@ -2,11 +2,11 @@
     <string name="hintSearchBar">Cerca un luogo…</string>
     <string name="loadingText">Solo un secondo…</string>
 
-    <string name="lblHumidity">Umidità:</string>
-    <string name="lblPressure">Pressione atmosferica:</string>
-    <string name="lblWindSpeed">Velocità del vento:</string>
-    <string name="lblWindDirection">Direzione del vento:</string>
-    <string name="lblVisibility">Visibilità:</string>
+    <string name="lblHumidity">Umidità</string>
+    <string name="lblPressure">Pressione atmosferica</string>
+    <string name="lblWindSpeed">Velocità del vento</string>
+    <string name="lblWindDirection">Direzione del vento</string>
+    <string name="lblVisibility">Visibilità</string>
 
     <!-- Error messages -->
     <string name="errInternetTitle">Nessuna connessione ad internet</string>

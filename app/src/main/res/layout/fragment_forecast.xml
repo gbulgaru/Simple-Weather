@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
-              android:orientation="vertical"
               android:layout_height="match_parent"
+              android:orientation="vertical"
               android:paddingTop="?attr/actionBarSize">
 
 	<TextView android:layout_width="match_parent" android:layout_height="wrap_content"
 	          android:id="@+id/lblNow" android:textSize="32sp"
 	          android:textStyle="bold"
-	          android:textAlignment="center"/>
+	          android:textAlignment="center" android:fontFamily="@font/roboto_slab"/>
 
 	<Space android:layout_width="match_parent" android:layout_height="10dp"/>
 
@@ -16,8 +17,7 @@
 	          android:layout_height="wrap_content"
 	          android:layout_width="wrap_content"
 	          android:layout_gravity="center_horizontal"
-	          android:text="..."
-	          android:textSize="96sp" android:textColor="#616161"/>
+	          android:textSize="96sp" android:textColor="#616161" android:fontFamily="@font/roboto_slab"/>
 
 	<Space android:layout_width="match_parent" android:layout_height="10dp"/>
 
@@ -25,45 +25,189 @@
 	          android:layout_width="match_parent"
 	          android:layout_height="wrap_content"
 	          android:textAlignment="center"
-	          android:textSize="64sp" android:textStyle="bold"/>
+	          android:textSize="64sp" android:textStyle="bold" android:fontFamily="@font/roboto_slab"/>
 
 	<LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center">
 		<TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
 		          android:id="@+id/lblTempMax" android:textStyle="bold" android:layout_gravity="center"
-		          android:textSize="16sp"/>
+		          android:textSize="16sp" android:fontFamily="@font/roboto_slab"/>
 		<TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
 		          android:id="@+id/lblTempMin" android:textColor="@color/material_dynamic_neutral50"
 		          android:textStyle="bold" android:layout_gravity="center"
-		          android:textSize="16sp"/>
+		          android:textSize="16sp" android:fontFamily="@font/roboto_slab"/>
 	</LinearLayout>
 
 	<Space android:layout_width="match_parent" android:layout_height="10dp"/>
 
-	<TextView android:id="@+id/lblHumidity"
-	          android:layout_width="match_parent"
-	          android:layout_height="wrap_content"
-	          android:text="@string/lblHumidity"
-	          android:padding="8dp"/>
-
-	<TextView
-			android:text="@string/lblVisibility"
+	<TableLayout
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content" android:id="@+id/lblVisibility"
-			android:padding="8dp"/>
+			android:layout_height="wrap_content"
+			android:id="@+id/tblDetails">
 
-	<TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-	          android:id="@+id/lblPressure"
-	          android:text="@string/lblPressure"
-	          android:padding="8dp"/>
+		<TableRow>
+			<com.google.android.material.card.MaterialCardView
+					android:layout_weight="1"
+					android:layout_margin="8dp"
+					app:cardCornerRadius="16dp"
+					app:strokeColor="?attr/colorPrimary"
+					app:strokeWidth="2dp">
 
-	<TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-	          android:id="@+id/lblWindSpeed"
-	          android:text="@string/lblWindSpeed"
-	          android:padding="8dp"/>
+				<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:padding="4dp"
+						android:orientation="vertical">
+					<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="@string/lblHumidity"
+							android:textStyle="bold"
+							android:padding="8dp"
+							android:layout_gravity="center" android:fontFamily="@font/roboto_slab"/>
+					<ImageView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:src="@drawable/ic_water_drop_24px"
+							android:layout_gravity="center"/>
+					<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:id="@+id/lblHumidity"
+							android:layout_gravity="center" android:fontFamily="@font/roboto_slab"/>
+				</LinearLayout>
+			</com.google.android.material.card.MaterialCardView>
 
-	<TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-	          android:id="@+id/lblWindDirection"
-	          android:text="@string/lblWindDirection"
-	          android:padding="8dp"/>
+			<com.google.android.material.card.MaterialCardView
+					android:layout_weight="1"
+					android:layout_margin="8dp"
+					app:cardCornerRadius="16dp"
+					app:strokeColor="?attr/colorPrimary"
+					app:strokeWidth="2dp">
 
+				<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:padding="4dp"
+						android:orientation="vertical">
+					<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="@string/lblPressure"
+							android:textStyle="bold"
+							android:padding="8dp"
+							android:layout_gravity="center" android:fontFamily="@font/roboto_slab"/>
+					<ImageView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:src="@drawable/ic_barometer_24px"
+							android:layout_gravity="center"/>
+					<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:id="@+id/lblPressure"
+							android:layout_gravity="center" android:fontFamily="@font/roboto_slab"/>
+				</LinearLayout>
+			</com.google.android.material.card.MaterialCardView>
+		</TableRow>
+
+		<TableRow>
+			<com.google.android.material.card.MaterialCardView
+					android:layout_weight="1"
+					android:layout_margin="8dp"
+					app:cardCornerRadius="16dp"
+					app:strokeColor="?attr/colorPrimary"
+					app:strokeWidth="2dp">
+
+				<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:padding="4dp"
+						android:orientation="vertical">
+					<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="@string/lblWindSpeed"
+							android:textStyle="bold"
+							android:padding="8dp"
+							android:layout_gravity="center" android:fontFamily="@font/roboto_slab"/>
+					<ImageView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:src="@drawable/ic_wind_24px"
+							android:layout_gravity="center"/>
+					<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:id="@+id/lblWindSpeed"
+							android:layout_gravity="center" android:fontFamily="@font/roboto_slab"/>
+				</LinearLayout>
+			</com.google.android.material.card.MaterialCardView>
+
+			<com.google.android.material.card.MaterialCardView
+					android:layout_weight="1"
+					android:layout_margin="8dp"
+					app:cardCornerRadius="16dp"
+					app:strokeColor="?attr/colorPrimary"
+					app:strokeWidth="2dp">
+
+				<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:padding="4dp"
+						android:orientation="vertical">
+					<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="@string/lblWindDirection"
+							android:textStyle="bold"
+							android:padding="8dp"
+							android:layout_gravity="center" android:fontFamily="@font/roboto_slab"/>
+					<ImageView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:src="@drawable/ic_compass_24px"
+							android:layout_gravity="center"/>
+					<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:id="@+id/lblWindDirection"
+							android:layout_gravity="center" android:fontFamily="@font/roboto_slab"/>
+				</LinearLayout>
+			</com.google.android.material.card.MaterialCardView>
+		</TableRow>
+
+		<TableRow>
+			<com.google.android.material.card.MaterialCardView
+					android:layout_weight="1"
+					android:layout_margin="8dp"
+					app:cardCornerRadius="16dp"
+					app:strokeColor="?attr/colorPrimary"
+					app:strokeWidth="2dp">
+
+				<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:padding="4dp"
+						android:orientation="vertical">
+					<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="@string/lblVisibility"
+							android:textStyle="bold"
+							android:padding="8dp"
+							android:layout_gravity="center" android:fontFamily="@font/roboto_slab"/>
+					<ImageView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:src="@drawable/ic_visibility_24px"
+							android:layout_gravity="center"/>
+					<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:id="@+id/lblVisibility"
+							android:layout_gravity="center" android:fontFamily="@font/roboto_slab"/>
+				</LinearLayout>
+			</com.google.android.material.card.MaterialCardView>
+		</TableRow>
+	</TableLayout>
 </LinearLayout>
