@@ -19,16 +19,18 @@
 
 package com.gbulgaru.simpleweather.RESTClients;
 
+import com.gbulgaru.simpleweather.BuildConfig;
 import com.gbulgaru.simpleweather.WeatherData;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import org.json.JSONObject;
+import java.util.Locale;
 
-public class REST_IP_Location extends Thread {
+public class OpenW_Current extends Thread{
 	private final WeatherData weatherData;
 
-	public REST_IP_Location(WeatherData weatherData) {
+	public OpenW_Current(WeatherData weatherData) {
 		super();
 		this.weatherData = weatherData;
 	}
@@ -36,15 +38,21 @@ public class REST_IP_Location extends Thread {
 	@Override
 	public void run() {
 		OkHttpClient client = new OkHttpClient();
+		String API_KEY = BuildConfig.OpenW_API_KEY;
 		Request request = new Request.Builder()
-				.url("https://ipinfo.io/?token")
+				.url("https://api.openweathermap.org/data/2.5/weather?lat=" + weatherData.getLatitude() + "&lon=" +
+						weatherData.getLongitude() + "&appid=" + API_KEY + "&units=" + weatherData.getMeasureSys() +
+						"&lang=" + Locale.getDefault().getLanguage())
 				.build();
 		try {
 			Response response = client.newCall(request).execute();
 			String responseString = response.body().string();
 			JSONObject jsonObject = new JSONObject(responseString);
-			weatherData.setLatitude(jsonObject.getString("loc").split(",")[0]);
-			weatherData.setLongitude(jsonObject.getString("loc").split(",")[1]);
+			weatherData.setCity(jsonObject.getString("name"));
+			weatherData.setShortDescription(jsonObject.getJSONArray("weather").getJSONObject(0).getString("description"));
+			weatherData.setTempMax(jsonObject.getJSONObject("main").getDouble("temp_max"));
+			weatherData.setTempMin(jsonObject.getJSONObject("main").getDouble("temp_min"));
+			weatherData.setFeelsLike(jsonObject.getJSONObject("main").getDouble("feels_like"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

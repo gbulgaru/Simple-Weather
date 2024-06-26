@@ -26,31 +26,33 @@ public class WeatherData {
 	private double tempMax;
 	private double feelsLike;
 	private String description, shortDescription;
-	private int humidity,visibility;
+	private int humidity, visibility;
+	private int sunrise, sunset;
 	private double windSpeed;
-	private String latitude;
-	private String longitude;
-	private String city;
+	private String latitude, longitude;
+	private String city, measureSys;
 	private int windDeg;
 	private int pressure;
 
-
 	public WeatherData() {
-		code=0;
-		tempNow=0;
-		tempMin=0;
-		tempMax=0;
-		feelsLike=0;
-		description="";
-		humidity=0;
-		visibility=0;
-		windSpeed=0;
-		windDeg =0;
-		latitude="";
-		longitude="";
-		city="";
-		pressure=0;
-		shortDescription="";
+		code = 0;
+		tempNow = 0;
+		tempMin = 0;
+		tempMax = 0;
+		feelsLike = 0;
+		description = "";
+		sunrise = 0;
+		sunset = 0;
+		humidity = 0;
+		visibility = 0;
+		windSpeed = 0;
+		windDeg = 0;
+		latitude = "";
+		longitude = "";
+		city = "";
+		measureSys = "metric";
+		pressure = 0;
+		shortDescription = "";
 	}
 
 	public void setTempNow(double tempNow) {
@@ -69,6 +71,22 @@ public class WeatherData {
 		return tempMax;
 	}
 
+	public int getSunrise() {
+		return sunrise;
+	}
+
+	public int getSunset() {
+		return sunset;
+	}
+
+	public void setSunrise(int sunrise) {
+		this.sunrise = sunrise;
+	}
+
+	public void setSunset(int sunset) {
+		this.sunset = sunset;
+	}
+
 	public void setTempMin(double tempMin) {
 		this.tempMin = tempMin;
 	}
@@ -79,6 +97,14 @@ public class WeatherData {
 
 	public double getFeelsLike() {
 		return feelsLike;
+	}
+
+	public String getMeasureSys() {
+		return measureSys;
+	}
+
+	public void setMeasureSys(String measureSys) {
+		this.measureSys = measureSys;
 	}
 
 	public void setFeelsLike(double feelsLike) {

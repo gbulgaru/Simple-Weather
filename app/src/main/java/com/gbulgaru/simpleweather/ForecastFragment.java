@@ -28,8 +28,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-import com.gbulgaru.simpleweather.RESTClients.REST_IP_Location;
-import com.gbulgaru.simpleweather.RESTClients.REST_OpenW_Now;
+import com.gbulgaru.simpleweather.RESTClients.IPLocation;
+import com.gbulgaru.simpleweather.RESTClients.OpenW_OneCall;
+import com.gbulgaru.simpleweather.RESTClients.OpenW_Current;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import org.jetbrains.annotations.NotNull;
 
@@ -57,7 +58,6 @@ public class ForecastFragment extends Fragment {
 	public void onViewCreated(@NotNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		// Starting information retrieval and UI update
-		initializeLoadingDialog();
 		fetchDataAndUpdateUI();
 	}
 
@@ -70,29 +70,32 @@ public class ForecastFragment extends Fragment {
 	}
 
 	private void fetchDataAndUpdateUI() {
+		initializeLoadingDialog();
+		requireActivity().runOnUiThread(() -> loadingDialog.show());
+
 		if (weatherData.getLatitude().isEmpty()&&weatherData.getLongitude().isEmpty()){
-			REST_IP_Location rest_ip_location = new REST_IP_Location(weatherData);
-			rest_ip_location.start();
+			IPLocation ipLocation = new IPLocation(weatherData);
+			ipLocation.start();
 			try {
-				rest_ip_location.join();
+				ipLocation.join();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
 
-		REST_OpenW_Now rest_openWeather_now = new REST_OpenW_Now(weatherData);
-		rest_openWeather_now.start();
+		OpenW_Current openW_current = new OpenW_Current(weatherData);
+		openW_current.start();
+
+		OpenW_OneCall openW_oneCall = new OpenW_OneCall(weatherData);
+		openW_oneCall.start();
 		try {
-			rest_openWeather_now.join();
+			openW_oneCall.join();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 
-		requireActivity().runOnUiThread(() -> {
-			loadingDialog.show();
-			updateForecast();
-			loadingDialog.dismiss();
-		});
+		updateForecast();
+		requireActivity().runOnUiThread(() -> loadingDialog.dismiss());
 	}
 
 	private void updateForecast() {
@@ -110,12 +113,12 @@ public class ForecastFragment extends Fragment {
 		updatePicture(weatherData.getCode());
 		lblNow.setText(weatherData.getCity() + " - " + weatherData.getShortDescription());
 		lblTempNow.setText(weatherData.getTempNow() + "°C");
-		lblTempMax.setText(weatherData.getTempMax() + "°/");
+		lblTempMax.setText(weatherData.getTempMax() + "° / ");
 		lblTempMin.setText(weatherData.getTempMin() + "°");
 		lblHumidity.setText(weatherData.getHumidity() + "%");
-		lblVisibility.setText(weatherData.getVisibility() + "m");
-		lblPressure.setText(weatherData.getPressure() + "hPa");
-		lblWindSpeed.setText(weatherData.getWindSpeed() + "m/s");
+		lblVisibility.setText(weatherData.getVisibility() + " m");
+		lblPressure.setText(weatherData.getPressure() + " hPa");
+		lblWindSpeed.setText(weatherData.getWindSpeed() + " m/s");
 		lblWindDeg.setText(weatherData.getWindDeg() + "°");
 	}
 
