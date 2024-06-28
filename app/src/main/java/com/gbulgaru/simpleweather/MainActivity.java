@@ -25,22 +25,38 @@ import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
 import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.inputmethod.EditorInfo;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+import com.gbulgaru.simpleweather.RESTClients.Ninjas_Geocoding;
 import com.google.android.gms.location.*;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.search.SearchView;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 	private static final int LOCATION_PERMISSION_REQUEST_CODE = 1001;
 	private FusedLocationProviderClient fusedLocationClient;
 	private LocationCallback locationCallback;
+	private Ninjas_Geocoding geocodingClient;
+	private ArrayList<JSONObject> searchResults;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		searchResults= new ArrayList<>();
+		geocodingClient = new Ninjas_Geocoding(searchResults, this);
+		setupSearchComponents();
 
 		fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
@@ -159,7 +175,50 @@ public class MainActivity extends AppCompatActivity {
 
 	private void loadForecastData(double latitude, double longitude) {
 		ForecastFragment forecastFragment = ForecastFragment.newInstance(latitude, longitude);
+		// Removes all fragments currently in the container
+		List<Fragment> fragments = getSupportFragmentManager().getFragments();
+		for (Fragment fragment : fragments) {
+			getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+		}
 		getSupportFragmentManager().beginTransaction()
 				.add(R.id.fragmentContainer, forecastFragment).commit();
+	}
+
+	private void setupSearchComponents() {
+		SearchView searchView = findViewById(R.id.searchView);
+		ListView searchResultsView = findViewById(R.id.searchResultsView);
+		ResultAdapter resultAdapter = new ResultAdapter(this, R.layout.search_item, searchResults);
+
+		// Set the listener to detect the enter key
+		searchView.getEditText().setOnEditorActionListener((TextView v, int actionId, KeyEvent event) -> {
+			if (actionId == EditorInfo.IME_ACTION_SEARCH || actionId == EditorInfo.IME_ACTION_DONE || event != null && event.getAction() == KeyEvent.ACTION_DOWN && event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+				if (event == null || !event.isShiftPressed()) {
+					// Perform search action
+					String query = searchView.getEditText().getText().toString();
+					geocodingClient.setQuery(query);
+					geocodingClient.start();
+					try {
+						geocodingClient.join();
+					} catch (InterruptedException e) {
+						throw new RuntimeException(e);
+					}
+					resultAdapter.notifyDataSetChanged();
+					searchResultsView.setAdapter(resultAdapter);
+					return true;
+				}
+			}
+			return false;
+		});
+
+		// Set the listener to detect the selection of a result
+		searchResultsView.setOnItemClickListener((parent, view, position, id) -> {
+			searchView.hide();
+			try {
+				JSONObject selectedResult = searchResults.get(position);
+				loadForecastData(selectedResult.getDouble("latitude"), selectedResult.getDouble("longitude"));
+			} catch (Exception e) {
+				throw new RuntimeException(e);
+			}
+		});
 	}
 }

@@ -22,5 +22,6 @@
     </string>
     <string name="errPermission">Senza l\'autorizzazione verrà usata la posizione IP.</string>
     <string name="errLocationOff">La geolocalizzazione sembra essere disattivata, controlla le impostazioni.</string>
+	<string name="descrCityIcon">Un\'icona arrotondata che rappresenta un blocco di edifici</string>
 
 </resources>

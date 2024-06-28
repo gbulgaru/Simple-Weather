@@ -15,7 +15,7 @@ android {
 		minSdk = 31
 		targetSdk = 34
 		versionCode = 1
-		versionName = "1.1"
+		versionName = "1.5"
 
 		val secretsPropertiesFile = rootProject.file("secrets.properties")
 		val secretsProperties = Properties()
@@ -23,6 +23,7 @@ android {
 
 		buildConfigField("String", "OpenW_API_KEY", "\"${secretsProperties.getProperty("OpenW_API_KEY")}\"")
 		buildConfigField("String", "AccuW_API_KEY", "\"${secretsProperties.getProperty("AccuW_API_KEY")}\"")
+		buildConfigField("String", "Ninjas_API_KEY", "\"${secretsProperties.getProperty("Ninjas_API_KEY")}\"")
 
 		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 	}

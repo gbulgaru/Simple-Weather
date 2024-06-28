@@ -2,23 +2,32 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout
 		xmlns:android="http://schemas.android.com/apk/res/android"
 		xmlns:tools="http://schemas.android.com/tools"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		tools:context=".MainActivity">
-
-	<androidx.fragment.app.FragmentContainerView
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:id="@+id/fragmentContainer"/>
 
 	<com.google.android.material.search.SearchBar
 			android:id="@+id/searchBar"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:hint="@string/hintSearchBar"/>
+			android:hint="@string/hintSearchBar" />
 
-	<com.google.android.material.search.SearchView android:layout_width="match_parent"
-	                                               android:layout_height="match_parent" android:id="@+id/searchView"
-	                                               android:visibility="gone"/>
+	<com.google.android.material.search.SearchView
+			android:id="@+id/searchView"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:hint="@string/hintSearchBar"
+			app:layout_anchor="@id/searchBar">
+		<ListView
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:id="@+id/searchResultsView"/>
+	</com.google.android.material.search.SearchView>
+
+	<androidx.fragment.app.FragmentContainerView
+			android:id="@+id/fragmentContainer"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

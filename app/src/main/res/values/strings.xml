@@ -24,4 +24,7 @@
         approximate location.\nYou can always opt out and receive predictions based on your internet location.\nWe will
         not share anything with third parties.
     </string>
+
+    <!-- Accessibility -->
+    <string name="descrCityIcon">A rounded icon representing a block of buildings</string>
 </resources>
