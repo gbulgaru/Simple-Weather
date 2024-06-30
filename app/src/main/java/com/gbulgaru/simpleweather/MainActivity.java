@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		searchResults= new ArrayList<>();
-		geocodingClient = new Ninjas_Geocoding(searchResults, this);
 		setupSearchComponents();
 
 		fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
@@ -195,15 +194,32 @@ public class MainActivity extends AppCompatActivity {
 				if (event == null || !event.isShiftPressed()) {
 					// Perform search action
 					String query = searchView.getEditText().getText().toString();
-					geocodingClient.setQuery(query);
+					// Clears the search results and notifies the adapter
+					searchResults.clear();
+					resultAdapter.notifyDataSetChanged();
+
+					geocodingClient = new Ninjas_Geocoding(searchResults, query);
 					geocodingClient.start();
+
 					try {
 						geocodingClient.join();
 					} catch (InterruptedException e) {
 						throw new RuntimeException(e);
 					}
+
+					// Notifies the adapter that the data has changed
 					resultAdapter.notifyDataSetChanged();
 					searchResultsView.setAdapter(resultAdapter);
+
+					// Shows a dialog if no results were found
+					if (searchResults.isEmpty()){
+						MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(this);
+						dialog.setTitle(R.string.errNoResultsTitle);
+						dialog.setMessage(R.string.errNoResultsMessage);
+						dialog.setIcon(R.drawable.ic_not_listed_location_24px);
+						dialog.setPositiveButton(R.string.close, (d, w) -> d.dismiss());
+						dialog.show();
+					}
 					return true;
 				}
 			}

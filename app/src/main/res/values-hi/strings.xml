@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="hintSearchBar">किसी स्थान की खोज करें…</string>
+	<string name="loadingText">इसमें अधिक समय नहीं लगेगा…</string>
+	<string name="lblHumidity">नमी</string>
+	<string name="lblPressure">दबाव</string>
+	<string name="lblWindSpeed">हवा की गति</string>
+	<string name="lblWindDirection">हवा की दिशा</string>
+	<string name="lblVisibility">दृश्यता</string>
+
+	<string name="errInternetTitle">कोई इंटरनेट कनेक्शन नहीं</string>
+	<string name="errInternetMessage">इंटरनेट कनेक्शन उपलब्ध नहीं है, कृपया सेटिंग्स की जांच करें और पुनः प्रयास करें।</string>
+	<string name="close">बंद करें</string>
+	<string name="errPermission">अनुमति नहीं होने पर IP स्थान का उपयोग किया जाएगा।</string>
+	<string name="errLocationOff">स्थान सेवाएं बंद लगती हैं, कृपया अपनी सेटिंग्स की जांच करें।</string>
+	<string name="errNoResultsTitle">ओह! कोई परिणाम नहीं मिला…</string>
+	<string name="errNoResultsMessage">हमने वह नहीं पाया जिसकी आप तलाश कर रहे थे।\nकृपया अपने खोज शब्द बदलें या टाइपिंग त्रुटियों की जांच करें।\nधन्यवाद!</string>
+
+	<string name="gmsWarningTitle">सीमित कार्यक्षमताएं</string>
+	<string name="gmsWarningMessage">इस ऐप को ठीक से काम करने के लिए Google Play Services की आवश्यकता है।\nइसके बिना, आप अपने लाइव स्थान का उपयोग नहीं कर पाएंगे।</string>
+	<string name="gpsRationaleTitle">हमें आपकी गोपनीयता की परवाह है</string>
+	<string name="gpsRationaleMessage">आपको सबसे सटीक मौसम पूर्वानुमान प्रदान करने के लिए हमें आपके अनुमानित स्थान की आवश्यकता होगी।\nआप हमेशा बाहर निकल सकते हैं और अपने इंटरनेट स्थान के आधार पर पूर्वानुमान प्राप्त कर सकते हैं।\nहम किसी भी तीसरे पक्ष के साथ कुछ भी साझा नहीं करेंगे।</string>
+
+	<string name="descrCityIcon">इमारतों के एक ब्लॉक का प्रतिनिधित्व करने वाला एक गोल आइकन</string>
+
+</resources>

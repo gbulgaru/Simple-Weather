@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="hintSearchBar">Caută un loc…</string>
+	<string name="loadingText">Acest lucru nu va dura prea mult…</string>
+	<string name="lblHumidity">Umiditate</string>
+	<string name="lblPressure">Presiune</string>
+	<string name="lblWindSpeed">Viteza vântului</string>
+	<string name="lblWindDirection">Direcția vântului</string>
+	<string name="lblVisibility">Vizibilitate</string>
+
+	<!-- Mesaje de eroare -->
+	<string name="errInternetTitle">Nu există conexiune la internet</string>
+	<string name="errInternetMessage">Conexiunea la internet nu este disponibilă, verificați setările și încercați din nou.</string>
+	<string name="close">Închide</string>
+	<string name="errPermission">Fără permisiune, locația IP va fi folosită.</string>
+	<string name="errLocationOff">Serviciile de localizare par a fi dezactivate, verificați setările.</string>
+	<string name="errNoResultsTitle">Ops! Niciun rezultat găsit…</string>
+	<string name="errNoResultsMessage">Nu am găsit ceea ce căutați.\nÎncercați să schimbați termenii de căutare sau verificați erorile de tastare.\nMulțumim!</string>
+	<!-- Servicii Google Play -->
+	<string name="gmsWarningTitle">Funcționalități limitate</string>
+	<string name="gmsWarningMessage">Această aplicație necesită Google Play Services pentru a funcționa corect.\nFără acesta, nu veți putea folosi locația dvs. în timp real.
+	</string>
+	<string name="gpsRationaleTitle">Ne pasă de confidențialitatea dvs.</string>
+	<string name="gpsRationaleMessage">Pentru a vă oferi cele mai precise prognoze meteorologice, am avea nevoie de locația dvs. aproximativă.\nPuteți oricând să renunțați și să primiți predicții bazate pe locația dvs. pe internet.\nNu vom împărtăși nimic cu terți.
+	</string>
+
+	<!-- Accesibilitate -->
+	<string name="descrCityIcon">O pictogramă rotundă care reprezintă un bloc de clădiri</string>
+</resources>

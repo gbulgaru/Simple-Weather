@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="hintSearchBar">Goleki panggonan…</string>
+	<string name="loadingText">Iki ora bakal njupuk wektu suwe…</string>
+	<string name="lblHumidity">Kelembapan</string>
+	<string name="lblPressure">Tekanan</string>
+	<string name="lblWindSpeed">Kecepatan angin</string>
+	<string name="lblWindDirection">Arah angin</string>
+	<string name="lblVisibility">Visibilitas</string>
+
+	<string name="errInternetTitle">Ora ana sambungan internet</string>
+	<string name="errInternetMessage">Sambungan internet ora kasedhiya, priksa setelan lan coba maneh.</string>
+	<string name="close">Nutup</string>
+	<string name="errPermission">Tanpa ijin, lokasi IP bakal digunakake.</string>
+	<string name="errLocationOff">Layanan lokasi katon mati, priksa setelan sampeyan.</string>
+	<string name="errNoResultsTitle">Ups! Ora ana asil ditemokake…</string>
+	<string name="errNoResultsMessage">Kita ora nemokake apa sing sampeyan goleki.\nCoba ganti istilah telusuran utawa priksa kesalahan ketik.\nMatur nuwun!</string>
+
+	<string name="gmsWarningTitle">Fungsi winates</string>
+	<string name="gmsWarningMessage">Aplikasi iki mbutuhake Google Play Services supaya bisa digunakake kanthi bener.\nTanpa iku, sampeyan ora bakal bisa nggunakake lokasi langsung sampeyan.</string>
+	<string name="gpsRationaleTitle">Kita peduli karo privasi sampeyan</string>
+	<string name="gpsRationaleMessage">Kanggo menehi prakiraan cuaca sing paling akurat, kita butuh lokasi sampeyan kira-kira.\nSampeyan bisa milih metu lan nampa prediksi adhedhasar lokasi internet sampeyan.\nKita ora bakal nuduhake apa-apa karo pihak katelu.</string>
+
+	<string name="descrCityIcon">Ikon bunder sing makili blok bangunan</string>
+
+</resources>

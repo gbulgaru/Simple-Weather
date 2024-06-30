@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="hintSearchBar">ابحث عن مكان…</string>
+	<string name="loadingText">لن يستغرق هذا وقتا طويلا…</string>
+	<string name="lblHumidity">رطوبة</string>
+	<string name="lblPressure">ضغط</string>
+	<string name="lblWindSpeed">سرعة الرياح</string>
+	<string name="lblWindDirection">اتجاه الرياح</string>
+	<string name="lblVisibility">رؤية</string>
+
+	<string name="errInternetTitle">لا يوجد اتصال بالإنترنت</string>
+	<string name="errInternetMessage">اتصال الإنترنت غير متاح ، تحقق من الإعدادات وحاول مرة أخرى.</string>
+	<string name="close">إغلاق</string>
+	<string name="errPermission">بدون إذن سيتم استخدام موقع IP.</string>
+	<string name="errLocationOff">تبدو خدمات الموقع مغلقة ، يرجى التحقق من الإعدادات الخاصة بك.</string>
+	<string name="errNoResultsTitle">عذرًا! لم يتم العثور على نتائج…</string>
+	<string name="errNoResultsMessage">لم نجد ما كنت تبحث عنه.\nحاول تغيير مصطلحات البحث الخاصة بك أو التحقق من الأخطاء الإملائية.\nشكرا!</string>
+
+	<string name="gmsWarningTitle">وظائف محدودة</string>
+	<string name="gmsWarningMessage">يتطلب هذا التطبيق خدمات Google Play للعمل بشكل صحيح.\nبدونها ، لن تتمكن من استخدام موقعك المباشر.</string>
+	<string name="gpsRationaleTitle">نحن نهتم بخصوصيتك</string>
+	<string name="gpsRationaleMessage">لتزويدك بأدق توقعات الطقس ، سنحتاج إلى موقعك التقريبي.\nيمكنك دائمًا الانسحاب وتلقي التوقعات بناءً على موقعك على الإنترنت.\nلن نشارك أي شيء مع أطراف ثالثة.</string>
+
+	<string name="descrCityIcon">رمز دائري يمثل كتلة من المباني</string>
+
+</resources>

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="hintSearchBar">Cerca un luogo…</string>
     <string name="loadingText">Solo un secondo…</string>
@@ -12,6 +13,9 @@
     <string name="errInternetTitle">Nessuna connessione ad internet</string>
     <string name="errInternetMessage">La connessione a internet non risulta disponibile, controlla le impostazioni e riprova.
     </string>
+    <string name="errNoResultsTitle">Ops! Nessun risultato trovato…</string>
+    <string name="errNoResultsMessage">Non abbiamo trovato quello che cercavi.
+        \nProva a cambiare i termini della ricerca o a controllare eventuali errori di battitura.\nGrazie!</string>
     <string name="close">Chiudi</string>
     <!-- Google Play Services -->
     <string name="gmsWarningTitle">Funzionalità limitate</string>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="hintSearchBar">Procure um lugar…</string>
+	<string name="loadingText">Isso não vai demorar muito…</string>
+	<string name="lblHumidity">Umidade</string>
+	<string name="lblPressure">Pressão</string>
+	<string name="lblWindSpeed">Velocidade do vento</string>
+	<string name="lblWindDirection">Direção do vento</string>
+	<string name="lblVisibility">Visibilidade</string>
+
+	<string name="errInternetTitle">Sem conexão à internet</string>
+	<string name="errInternetMessage">A conexão com a internet não está disponível, verifique as configurações e tente novamente.</string>
+	<string name="close">Fechar</string>
+	<string name="errPermission">Sem permissão, a localização do IP será usada.</string>
+	<string name="errLocationOff">Os serviços de localização parecem estar desligados, verifique suas configurações.</string>
+	<string name="errNoResultsTitle">Ops! Nenhum resultado encontrado…</string>
+	<string name="errNoResultsMessage">Não encontramos o que você estava procurando.\nTente mudar seus termos de busca ou verificar erros de digitação.\nObrigado!</string>
+
+	<string name="gmsWarningTitle">Funcionalidades limitadas</string>
+	<string name="gmsWarningMessage">Este aplicativo requer o Google Play Services para funcionar corretamente.\nSem ele, você não poderá usar sua localização ao vivo.</string>
+	<string name="gpsRationaleTitle">Nós nos preocupamos com sua privacidade</string>
+	<string name="gpsRationaleMessage">Para fornecer previsões meteorológicas mais precisas, precisamos da sua localização aproximada.\nVocê sempre pode optar por não participar e receber previsões com base na sua localização na internet.\nNão compartilharemos nada com terceiros.</string>
+
+	<string name="descrCityIcon">Um ícone arredondado representando um bloco de edifícios</string>
+
+</resources>

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">Simple Weather</string>
     <string name="hintSearchBar">Search a place…</string>
@@ -14,6 +15,8 @@
     <string name="close">Close</string>
     <string name="errPermission">Without permission IP location will be used.</string>
     <string name="errLocationOff">Location services seem off, please check your settings.</string>
+    <string name="errNoResultsTitle">Ops! No results found…</string>
+    <string name="errNoResultsMessage">We did not find what you were looking for.\nTry changing your search terms or checking for typing errors.\nThank you!</string>
     <!-- Google Play Services -->
     <string name="gmsWarningTitle">Limited functionalities</string>
     <string name="gmsWarningMessage">This app requires Google Play Services to work properly.\nWithout it, you will not

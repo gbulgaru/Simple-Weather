@@ -34,12 +34,11 @@ import java.util.ArrayList;
 public class Ninjas_Geocoding extends Thread{
 	private ArrayList<JSONObject> suggestions;
 	private String query;
-	private Context context;
 
-	public Ninjas_Geocoding(ArrayList<JSONObject> suggestions, Context c) {
+	public Ninjas_Geocoding(ArrayList<JSONObject> suggestions, String query) {
 		super();
 		this.suggestions = suggestions;
-		this.context = c;
+		this.query = query;
 	}
 
 	@Override
@@ -63,9 +62,5 @@ public class Ninjas_Geocoding extends Thread{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	public synchronized void setQuery(String query) {
-		this.query = query;
 	}
 }

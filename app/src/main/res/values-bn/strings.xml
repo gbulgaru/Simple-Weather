@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="hintSearchBar">একটি স্থান খুঁজুন…</string>
+	<string name="loadingText">এটি বেশি সময় লাগবে না…</string>
+	<string name="lblHumidity">আর্দ্রতা</string>
+	<string name="lblPressure">চাপ</string>
+	<string name="lblWindSpeed">বাতাসের গতি</string>
+	<string name="lblWindDirection">বাতাসের দিক</string>
+	<string name="lblVisibility">দৃশ্যমানতা</string>
+
+	<string name="errInternetTitle">ইন্টারনেট সংযোগ নেই</string>
+	<string name="errInternetMessage">ইন্টারনেট সংযোগ উপলব্ধ নয়, সেটিংস চেক করুন এবং আবার চেষ্টা করুন।</string>
+	<string name="close">বন্ধ করুন</string>
+	<string name="errPermission">অনুমতি ছাড়া আইপি অবস্থান ব্যবহার করা হবে।</string>
+	<string name="errLocationOff">অবস্থান পরিষেবা বন্ধ রয়েছে, অনুগ্রহ করে আপনার সেটিংস চেক করুন।</string>
+	<string name="errNoResultsTitle">ওপস! কোন ফলাফল পাওয়া যায়নি…</string>
+	<string name="errNoResultsMessage">আমরা আপনি যা খুঁজছেন তা খুঁজে পাইনি।\nআপনার অনুসন্ধান শব্দগুলি পরিবর্তন করার বা টাইপিং ত্রুটিগুলি পরীক্ষা করার চেষ্টা করুন।\nধন্যবাদ!</string>
+
+	<string name="gmsWarningTitle">সীমিত কার্যকারিতা</string>
+	<string name="gmsWarningMessage">এই অ্যাপটি সঠিকভাবে কাজ করার জন্য গুগল প্লে পরিষেবার প্রয়োজন।\nএটি ছাড়া, আপনি আপনার লাইভ অবস্থান ব্যবহার করতে পারবেন না।</string>
+	<string name="gpsRationaleTitle">আমরা আপনার গোপনীয়তা নিয়ে চিন্তা করি</string>
+	<string name="gpsRationaleMessage">আপনাকে সবচেয়ে সঠিক আবহাওয়ার পূর্বাভাস প্রদান করতে আমাদের আপনার আনুমানিক অবস্থান প্রয়োজন হবে।\nআপনি সবসময় অপ্ট আউট করতে পারেন এবং আপনার ইন্টারনেট অবস্থানের উপর ভিত্তি করে পূর্বাভাসগুলি পেতে পারেন।\nআমরা তৃতীয় পক্ষের সাথে কিছুই শেয়ার করব না।</string>
+
+	<string name="descrCityIcon">একটি বিল্ডিং ব্লক প্রতিনিধিত্বকারী একটি বৃত্তাকার আইকন</string>
+
+</resources>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="hintSearchBar">Поиск места…</string>
+	<string name="loadingText">Это не займет много времени…</string>
+	<string name="lblHumidity">Влажность</string>
+	<string name="lblPressure">Давление</string>
+	<string name="lblWindSpeed">Скорость ветра</string>
+	<string name="lblWindDirection">Направление ветра</string>
+	<string name="lblVisibility">Видимость</string>
+
+	<string name="errInternetTitle">Нет подключения к Интернету</string>
+	<string name="errInternetMessage">Подключение к Интернету недоступно, проверьте настройки и попробуйте снова.</string>
+	<string name="close">Закрыть</string>
+	<string name="errPermission">Без разрешения будет использоваться IP-местоположение.</string>
+	<string name="errLocationOff">Службы определения местоположения, кажется, отключены, проверьте свои настройки.</string>
+	<string name="errNoResultsTitle">Упс! Результатов не найдено…</string>
+	<string name="errNoResultsMessage">Мы не нашли то, что вы искали.\nПопробуйте изменить поисковые запросы или проверить ошибки при вводе.\nСпасибо!</string>
+
+	<string name="gmsWarningTitle">Ограниченные функции</string>
+	<string name="gmsWarningMessage">Для правильной работы этому приложению необходимы Google Play Services.\nБез них вы не сможете использовать свое текущее местоположение.</string>
+	<string name="gpsRationaleTitle">Мы заботимся о вашей конфиденциальности</string>
+	<string name="gpsRationaleMessage">Чтобы предоставить вам самые точные прогнозы погоды, нам потребуется ваше приблизительное местоположение.\nВы всегда можете отказаться и получать прогнозы на основе вашего интернет-местоположения.\nМы не будем делиться ничем с третьими лицами.</string>
+
+	<string name="descrCityIcon">Круглый значок, представляющий блок зданий</string>
+
+</resources>

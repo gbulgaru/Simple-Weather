@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="hintSearchBar">搜索一个地方…</string>
+	<string name="loadingText">这不会花太长时间…</string>
+	<string name="lblHumidity">湿度</string>
+	<string name="lblPressure">气压</string>
+	<string name="lblWindSpeed">风速</string>
+	<string name="lblWindDirection">风向</string>
+	<string name="lblVisibility">能见度</string>
+
+	<string name="errInternetTitle">无互联网连接</string>
+	<string name="errInternetMessage">互联网连接不可用，请检查设置并重试。</string>
+	<string name="close">关闭</string>
+	<string name="errPermission">没有权限将使用IP位置。</string>
+	<string name="errLocationOff">定位服务似乎关闭，请检查您的设置。</string>
+	<string name="errNoResultsTitle">哎呀！未找到结果…</string>
+	<string name="errNoResultsMessage">我们没有找到您要找的内容。\n请尝试更改搜索词或检查拼写错误。\n谢谢！</string>
+
+	<string name="gmsWarningTitle">功能受限</string>
+	<string name="gmsWarningMessage">此应用需要Google Play服务才能正常工作。\n没有它，您将无法使用实时位置。</string>
+	<string name="gpsRationaleTitle">我们关心您的隐私</string>
+	<string name="gpsRationaleMessage">为了为您提供最准确的天气预报，我们需要您的大致位置。\n您随时可以选择退出并基于您的互联网位置接收预测。\n我们不会与第三方共享任何信息。</string>
+
+	<string name="descrCityIcon">一个代表建筑群的圆形图标</string>
+</resources>
