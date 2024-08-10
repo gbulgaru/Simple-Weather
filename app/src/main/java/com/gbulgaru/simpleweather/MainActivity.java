@@ -21,16 +21,20 @@ package com.gbulgaru.simpleweather;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.location.Location;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
@@ -39,7 +43,6 @@ import com.google.android.gms.location.*;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.search.SearchView;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,14 +50,15 @@ public class MainActivity extends AppCompatActivity {
 	private static final int LOCATION_PERMISSION_REQUEST_CODE = 1001;
 	private FusedLocationProviderClient fusedLocationClient;
 	private LocationCallback locationCallback;
-	private Ninjas_Geocoding geocodingClient;
-	private ArrayList<JSONObject> searchResults;
+	private ArrayList<JSONObject> searchResults = new ArrayList<>();
+	private AlertDialog loadingDialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		searchResults= new ArrayList<>();
+		super.onCreate(savedInstanceState);
+
+		showLoadingAlert();
 		setupSearchComponents();
 
 		fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
@@ -62,12 +66,9 @@ public class MainActivity extends AppCompatActivity {
 		// Define the location callback
 		locationCallback = new LocationCallback() {
 			@Override
-			public void onLocationResult(LocationResult locationResult) {
-				if (locationResult == null) {
-					return;
-				}
+			public void onLocationResult(@NonNull LocationResult locationResult) {
 				// Get the most recent location
-				android.location.Location location = locationResult.getLastLocation();
+				Location location = locationResult.getLastLocation();
 				if (location != null) {
 					loadForecastData(location.getLatitude(), location.getLongitude());
 					fusedLocationClient.removeLocationUpdates(locationCallback);
@@ -80,21 +81,36 @@ public class MainActivity extends AppCompatActivity {
 
 		// Checks internet connection to choose whether to show the loading dialog or not
 		if (isNetworkAvailable(this)) {
-			// Check location permission
-			if (checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-				// Show rationale dialog before requesting permission
-				new MaterialAlertDialogBuilder(this)
-						.setTitle(R.string.gpsRationaleTitle)
-						.setMessage(R.string.gpsRationaleMessage)
-						.setIcon(R.drawable.ic_security_24px)
-						.setPositiveButton("Ok", (dialog, which) -> {
-							dialog.dismiss();
-							// Request location permission after closing the dialog
-							requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, LOCATION_PERMISSION_REQUEST_CODE);
-						})
-						.show();
+			// Checks if the device is running Android 12 or newer
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
+				if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+					// Show rationale dialog before requesting permission
+					new MaterialAlertDialogBuilder(this)
+							.setTitle(R.string.gpsRationaleTitle)
+							.setMessage(R.string.gpsRationaleMessage)
+							.setIcon(R.drawable.ic_security_24px).setCancelable(false)
+							.setPositiveButton("Ok", (dialog, which) -> {
+								dialog.dismiss();
+								// Request location permission after closing the dialog
+								requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMISSION_REQUEST_CODE);
+							})
+							.show();
+				}
 			} else {
-				// Request location updates
+				// Check location permission
+				if (checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+					// Show rationale dialog before requesting permission
+					new MaterialAlertDialogBuilder(this)
+							.setTitle(R.string.gpsRationaleTitle)
+							.setMessage(R.string.gpsRationaleMessage)
+							.setIcon(R.drawable.ic_security_24px).setCancelable(false)
+							.setPositiveButton("Ok", (dialog, which) -> {
+								dialog.dismiss();
+								// Request location permission after closing the dialog
+								requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, LOCATION_PERMISSION_REQUEST_CODE);
+							})
+							.show();
+				}
 				getLastLocation();
 			}
 		} else {
@@ -102,14 +118,15 @@ public class MainActivity extends AppCompatActivity {
 			new MaterialAlertDialogBuilder(this)
 					.setTitle(R.string.errInternetTitle)
 					.setMessage(R.string.errInternetMessage)
-					.setIcon(R.drawable.ic_signal_disconnected_24px)
+					.setIcon(R.drawable.ic_signal_disconnected_24px).setCancelable(false)
 					.setPositiveButton(R.string.close, (dialog, which) -> finish())
 					.show();
 		}
 	}
 
 	@Override
-	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+	                                       @NonNull int[] grantResults) {
 		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 		if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
 			if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -124,8 +141,16 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	private void getLastLocation() {
-		if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-			return;
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
+			// Check if fine location permission is denied
+			if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+				return;
+			}
+		} else {
+			// Check if coarse location permission is denied
+			if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+				return;
+			}
 		}
 		LocationRequest locationRequest = LocationRequest.create()
 				.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
@@ -198,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
 					searchResults.clear();
 					resultAdapter.notifyDataSetChanged();
 
-					geocodingClient = new Ninjas_Geocoding(searchResults, query);
+					Ninjas_Geocoding geocodingClient = new Ninjas_Geocoding(searchResults, query);
 					geocodingClient.start();
 
 					try {
@@ -212,13 +237,8 @@ public class MainActivity extends AppCompatActivity {
 					searchResultsView.setAdapter(resultAdapter);
 
 					// Shows a dialog if no results were found
-					if (searchResults.isEmpty()){
-						MaterialAlertDialogBuilder dialog = new MaterialAlertDialogBuilder(this);
-						dialog.setTitle(R.string.errNoResultsTitle);
-						dialog.setMessage(R.string.errNoResultsMessage);
-						dialog.setIcon(R.drawable.ic_not_listed_location_24px);
-						dialog.setPositiveButton(R.string.close, (d, w) -> d.dismiss());
-						dialog.show();
+					if (searchResults.isEmpty()) {
+						makeMaterialAlert(R.string.errNoResultsTitle, R.string.errNoResultsMessage, R.drawable.ic_not_listed_location_24px, R.string.close);
 					}
 					return true;
 				}
@@ -236,5 +256,28 @@ public class MainActivity extends AppCompatActivity {
 				throw new RuntimeException(e);
 			}
 		});
+	}
+
+	private void makeMaterialAlert(int title, int message, int icon, int positiveMsg) {
+		MaterialAlertDialogBuilder alert = new MaterialAlertDialogBuilder(this);
+		alert.setTitle(title);
+		alert.setMessage(message);
+		alert.setIcon(icon);
+		alert.setPositiveButton(positiveMsg, (dialog, which) -> dialog.dismiss());
+		alert.show();
+	}
+
+	private void showLoadingAlert() {
+		LayoutInflater inflater = getLayoutInflater();
+
+		MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
+		builder.setView(inflater.inflate(R.layout.loading_dialog, null));
+		loadingDialog = builder.create();
+		loadingDialog.setCancelable(false);
+		loadingDialog.show();
+	}
+
+	public void closeLoadingAlert() {
+		loadingDialog.dismiss();
 	}
 }

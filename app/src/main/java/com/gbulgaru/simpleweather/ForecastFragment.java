@@ -23,20 +23,19 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import com.gbulgaru.simpleweather.RESTClients.IPLocation;
 import com.gbulgaru.simpleweather.RESTClients.OpenW_OneCall;
 import com.gbulgaru.simpleweather.RESTClients.OpenW_Current;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import org.jetbrains.annotations.NotNull;
+import com.bumptech.glide.Glide;
 
 public class ForecastFragment extends Fragment {
 	private static final WeatherData weatherData = new WeatherData();
-	private AlertDialog loadingDialog;
 
 	public static ForecastFragment newInstance() {
 		return new ForecastFragment();
@@ -57,23 +56,11 @@ public class ForecastFragment extends Fragment {
 	@Override
 	public void onViewCreated(@NotNull View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-		// Starting information retrieval and UI update
 		fetchDataAndUpdateUI();
 	}
 
-	private void initializeLoadingDialog() {
-		MaterialAlertDialogBuilder loadingDialogBuilder = new MaterialAlertDialogBuilder(requireContext());
-		View dialogView = getLayoutInflater().inflate(R.layout.loading_dialog, null);
-		loadingDialogBuilder.setView(dialogView);
-		loadingDialogBuilder.setCancelable(false);
-		loadingDialog = loadingDialogBuilder.create();
-	}
-
 	private void fetchDataAndUpdateUI() {
-		initializeLoadingDialog();
-		requireActivity().runOnUiThread(() -> loadingDialog.show());
-
-		if (weatherData.getLatitude().isEmpty()&&weatherData.getLongitude().isEmpty()){
+		if (weatherData.getLatitude().isEmpty() && weatherData.getLongitude().isEmpty()) {
 			IPLocation ipLocation = new IPLocation(weatherData);
 			ipLocation.start();
 			try {
@@ -95,7 +82,10 @@ public class ForecastFragment extends Fragment {
 		}
 
 		updateForecast();
-		requireActivity().runOnUiThread(() -> loadingDialog.dismiss());
+		MainActivity mainActivity = (MainActivity) getActivity();
+		if (mainActivity != null) {
+			mainActivity.closeLoadingAlert();
+		}
 	}
 
 	private void updateForecast() {
@@ -123,33 +113,35 @@ public class ForecastFragment extends Fragment {
 	}
 
 	private void updatePicture(int code) {
-		TextView imgNow = requireView().findViewById(R.id.lblIcoNow);
+		ImageView imgNow = requireView().findViewById(R.id.imgNow);
+		imgNow.getLayoutParams().width = getResources().getDisplayMetrics().widthPixels/3;
+
 		if (code >= 200 && code <= 232) {
-			imgNow.setText("\uD83C\uDF29️");
+			Glide.with(this).load(R.drawable.cloud_lightning).into(imgNow);
 		} else if (code >= 300 && code <= 321) {
-			imgNow.setText("🌧️");
+			Glide.with(this).load(R.drawable.cloud_rain).into(imgNow);
 		} else if (code >= 500 && code <= 504) {
-			imgNow.setText("\uD83C\uDF26️");
+			Glide.with(this).load(R.drawable.sun_rain_cloud).into(imgNow);
 		} else if (code == 511) {
-			imgNow.setText("❄");
+			Glide.with(this).load(R.drawable.cloud_snow).into(imgNow);
 		} else if (code >= 520 && code <= 531) {
-			imgNow.setText("🌧️");
+			Glide.with(this).load(R.drawable.cloud_rain).into(imgNow);
 		} else if (code >= 600 && code <= 622) {
-			imgNow.setText("\uD83C\uDF28️");
+			Glide.with(this).load(R.drawable.cloud_snow).into(imgNow);
 		} else if (code >= 701 && code <= 771) {
-			imgNow.setText("🌫️");
+			imgNow.setImageResource(R.drawable.foggy);
 		} else if (code == 781) {
-			imgNow.setText("🌪️");
+			Glide.with(this).load(R.drawable.tornado).into(imgNow);
 		} else if (code == 800) {
-			imgNow.setText("☀️");
+			Glide.with(this).load(R.drawable.sun).into(imgNow);
 		} else if (code == 801) {
-			imgNow.setText("🌤️");
+			Glide.with(this).load(R.drawable.sun_cloud).into(imgNow);
 		} else if (code == 802) {
-			imgNow.setText("\uD83C\uDF25️");
+			Glide.with(this).load(R.drawable.sun_big_cloud).into(imgNow);
 		} else if (code == 803 || code == 804) {
-			imgNow.setText("☁️");
+			Glide.with(this).load(R.drawable.cloud).into(imgNow);
 		} else {
-			imgNow.setText("❓");
+			imgNow.setImageResource(R.drawable.red_question_mark);
 		}
 	}
 }

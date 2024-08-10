@@ -24,8 +24,7 @@
     </string>
     <string name="gpsRationaleTitle">We care about your privacy</string>
     <string name="gpsRationaleMessage">To provide you with the most accurate weather forecasts we would need your
-        approximate location.\nYou can always opt out and receive predictions based on your internet location.\nWe will
-        not share anything with third parties.
+        approximate location.\nYou can always opt out and receive predictions based on your internet location.
     </string>
 
     <!-- Accessibility -->

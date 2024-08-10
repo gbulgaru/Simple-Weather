@@ -11,7 +11,7 @@
 			android:id="@+id/searchBar"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:hint="@string/hintSearchBar" />
+			android:hint="@string/hintSearchBar"/>
 
 	<com.google.android.material.search.SearchView
 			android:id="@+id/searchView"
@@ -28,6 +28,7 @@
 	<androidx.fragment.app.FragmentContainerView
 			android:id="@+id/fragmentContainer"
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"/>
+			android:layout_height="match_parent"
+			tools:layout="@layout/fragment_forecast"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
